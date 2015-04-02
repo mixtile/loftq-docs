@@ -379,26 +379,13 @@ loftq-linux
 
 链接地址： https://github.com/mixtile/loftq-linux
 
-loftq-factorytest-qt
-'''''''''''''''''''''''''
 
-用于 LOFT-Q 的产测程序，基于 QT 和 Buildroot，还未完成。
-
-链接地址： https://github.com/mixtile/loftq-factorytest-qt
-
-loftq-factorytest-android
-'''''''''''''''''''''''''''
-
-用于 LOFT-Q 的产测程序，用于 Android 平台。
-
-链接地址: https://github.com/mixtile/loftq-factorytest-android
-
-mixtile-ubuntu-touch
+mixtile-android-device
 ''''''''''''''''''''''
 
-LOFT-Q 定制的 Ubuntu Touch 固件包。
+LOFT-Q 定制的 Android 设备固件包。
 
-Repository: https://github.com/mixtile/mixtile-ubuntu-touch
+Repository: https://github.com/mixtile/mixtile-android-device
 
 
 Buildroot

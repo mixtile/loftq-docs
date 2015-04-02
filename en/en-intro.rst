@@ -72,23 +72,11 @@ LOFT-Q is based on A31 soc which is designed by Allwinner, and it is supported b
 
   Repository: https://github.com/mixtile/loftq-linux
 
-* loftq-factorytest-qt
+* mixtile-android-device
 
-  The factory test program for LOFT-Q, based on qt, working on buildroot, it's still under developing.
+  The bsp for Android platform.
 
-  Repository: https://github.com/mixtile/loftq-factorytest-qt
-
-* loftq-factorytest-android
-
-  The factory test program for LOFT-Q, based on Android.
-
-  Repository: https://github.com/mixtile/loftq-factorytest-android
-
-* mixtile-ubuntu-touch
-
-  The bsp for Ubuntu touch.
-
-  Repository: https://github.com/mixtile/mixtile-ubuntu-touch
+  Repository: https://github.com/mixtile/mixtile-android-device
 
 * buildroot
 
