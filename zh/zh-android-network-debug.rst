@@ -15,8 +15,11 @@ Android adb 网络调试
 2. 连接 LOFT-Q 以太网或者通过设置连接可用的 Wifi 网络
 
 
+GNU/Linux 系统准备
+----------------------
+
 调试工具安装
---------------
+''''''''''''''''''''''
 
 本节基于 Ubuntu 操作过程编写, 对于其他操作系统, 可以查找相关的方法来进行工具的安装。对于调试用到的工具是 minicom 和 adb。相关的安装命令如下：
 
@@ -33,9 +36,8 @@ Android adb 网络调试
     sudo add-apt-repository ppa:phablet-team/tools && sudo apt-get update
     sudo apt-get install android-tools-adb android-tools-fastboot
 
-
-启用网络 ADB
---------------
+启用网络 ADB (Ubuntu)
+'''''''''''''''''''''''
 
 在上述工具软件安装完成后, 需要启用 Android 的网络 ADB 协议。具体步骤如下：
 
@@ -78,6 +80,64 @@ Android adb 网络调试
     
      ifconfig wlan0
 
+Windows 系统准备
+----------------------
+
+对于 Windows 系统，在开始调试之前需要安装和准备如下程序：
+
+* JDK 
+* Android SDK
+* `putty`_ 或者其他串口程序
+
+启用网络 ADB (windows)
+'''''''''''''''''''''''
+
+在上述工具软件安装完成后, 需要启用 Android 的网络 ADB 协议。具体步骤如下：
+
+1. 连接 LOFT-Q 串口线, 可以使用 USB 转串口线连接。
+2. 在连接完成后, 使用 **putty** 打开串口，配置方式如下图：
+
+   .. image:: ../_static/pictures/putty_config.png
+
+   .. tip::   
+
+     备注： 上图配种中需要根据自己的串口进行设置，这里选择 **COM4** ，波特率设置为 **115200**，同时选择连接方式为 **Serial**。
+
+3. 配置完成之后，选择 **Open** 打开串口，然后在窗口中按下 **Enter** 回车键，将会显示 Android shell 如下图：
+
+   .. image:: ../_static/pictures/putty_serial.png
+
+4. 启用 ADB 网络协议。依次在交互命令行中输入如下指令：
+
+   .. code-block:: sh
+
+     su
+     stop adbd
+     setprop service.adb.tcp.port 5555
+     start adbd
+
+   具体的操作如下图：
+
+   .. image:: ../_static/pictures/putty_adb_config.png
+
+5. 查看当前 LOFT-Q 的网络 IP 地址。
+
+   以太网 IP 地址查看方法：
+    
+   .. code-block:: sh
+    
+     ifconfig eth0
+
+   无线网络 IP 地址查看方法：
+
+   .. code-block:: sh
+    
+     ifconfig wlan0
+
+   显示结果如图：
+
+   .. image:: ../_static/pictures/putty_ethernet.png
+
 
 连接网络 ADB
 ---------------
@@ -93,6 +153,7 @@ Android adb 网络调试
   .. tip:: 
 
     备注： 上述指令中的 `192.168.1.100` 为 LOFT-Q 在网络中的 IP 地址。
+    
 
 * ADB shell 打开
 
@@ -100,6 +161,9 @@ Android adb 网络调试
 
     adb shell
 
+对于 windows 平台，需要将 android-sdk 相关工具加入到**环境变量**，同是在 **cmd** 中输入上述指令，如下图：
+
+.. image:: ../_static/pictures/windows_cmd_adb.png
 
 Eclipse 调试
 -----------------
@@ -112,4 +176,6 @@ Eclipse 调试
 
 * 对于 ADB 网络连接, 在 LOFT-Q 重启之后将会失效, 需要参照 **启用网络 ADB** 中的过程重新进行启用。
 * eclipse 进行联机调试时, 受限于当前网络环境, 可能会出现连接超时的情况, 只需要重新发起调试即可。
+
+.. _putty: http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
 
