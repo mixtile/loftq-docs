@@ -85,10 +85,12 @@ LOFT-Q 基于全志设计的 A31 芯片，除了全志以及前述的 Linux-sunx
 
   用于 LOFT-Q 项目的 android 源代码，基于原厂的 A31 的盒子版的 android 4.4.2 版本，并添加适用于 LOFT-Q 原型版的 wifi, 蓝牙等外设的驱动固件。
 
-  链接地址： http://www.focalcrest.com/cn/pc.html
+  链接地址： http://www.mixtile.com/downloads/loft-q/
 
 硬件介绍
 ----------
+
+原理图下载链接：http://www.mixtile.com/downloads/loft-q/mixtile-loftq-schematic.pdf
 
 LOFT-Q 基本的硬件资料介绍如下：
 

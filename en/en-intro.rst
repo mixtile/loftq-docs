@@ -88,12 +88,13 @@ LOFT-Q is based on A31 soc which is designed by Allwinner, and it is supported b
 
   Android for LOFT-Q, based on android 4.4.2 Kitkat provided by the original vendor for A31 soc with customized drivers, firmwares of Wifi, Bluetooth, RTC etc.
 
-  Archive: http://www.focalcrest.com/cn/pc.html
+  Archive: http://www.mixtile.com/downloads/loft-q/
 
 Hardware 
 -----------
 
-The Hardware resource is still under working, and will be released soon.
+Schematic link: http://www.mixtile.com/downloads/loft-q/mixtile-loftq-schematic.pdf
+
 
 CPU
 '''''''''

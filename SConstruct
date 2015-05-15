@@ -9,15 +9,24 @@ en_pdfstylesheet = "./_static/en-US.style"
 zh_pdfstylesheet = './_static/zh-CN.style' 
 
 en_docs = [
- 'en/en-intro.rst',
- 'en/en-quick-guide.rst',
+'en/en-android-cust.rst',
+'en/en-intro.rst',
+'en/en-legacy-quick-guide.rst',
+'en/en-mainline-quick-guide.rst',
+'en/en-owncloud-howto.rst',
+'en/en-seafile-howto.rst',
 ]
 
 zh_docs = [
 'zh/zh-intro.rst',
-'zh/zh-quick-guide.rst',
 'zh/zh-product-intro.rst',
 'zh/zh-android-network-debug.rst',
+'zh/zh-jn5168-guide.rst',
+'zh/zh-legacy-driver-guide.rst',
+'zh/zh-legacy-quick-guide.rst',
+'zh/zh-mainline-quick-guide.rst',
+'zh/zh-owncloud-howto.rst',
+'zh/zh-seafile-howto.rst',
 ]
 
 #env.Rst2Html(en_docs, stylesheet=html_stylesheet)

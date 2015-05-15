@@ -168,9 +168,9 @@ Windows 系统准备
 对于 windows 平台，需要将 android-sdk 相关工具加入到 **环境变量** ，同是在 **cmd** 中输入上述指令，如下图：
 
 .. image:: ../_static/pictures/windows_cmd_adb.png
-  :align: left
   :width: 50%
 
+|
 |
 
 Eclipse 调试
@@ -186,4 +186,5 @@ Eclipse 调试
 * eclipse 进行联机调试时, 受限于当前网络环境, 可能会出现连接超时的情况, 只需要重新发起调试即可。
 
 .. _putty: http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
+
 

@@ -154,18 +154,19 @@ boot.scr 生成
 
 boot.scr 是 UBoot 可以加载和执行的指令文件，主要用于执行加载内核以及执行内核之前的一些配置。当然，该文件也可以直接使用已生成的文件。
 
-如果根据自己的需要进行定制，具体的定制方法可以参考 `boot.cmd 规则说明`_ 在定制完成之后可以使用如下命令：
+* 预编译 boot.scr: https://github.com/mixtile/loftq-build/tree/master/bsp/binary/boot .
+* 如果根据自己的需要进行定制，具体的定制方法可以参考 `boot.cmd 规则说明`_ 在定制完成之后可以使用如下命令：
 
-.. code-block:: sh   
+  .. code-block:: sh   
 
-   cd loftq-build/bsp/configs
+     cd loftq-build/bsp/configs
 
-   mkimage -C none -A arm -T script -d boot_single.cmd boot.scr
+     mkimage -C none -A arm -T script -d boot_single.cmd boot.scr
 
-.. note:: 
+  .. note:: 
    
-   * 对于全志旧版内核，boot.scr 配置位于： **loftq-build/bsp-legacy/configs/configs/boot_single.cmd**
-   * 对于主流内核，boot.scr 配置位于： **loftq-build/bsp/configs/boot_single.cmd**
+    * 对于全志旧版内核，boot.scr 配置位于： **loftq-build/bsp-legacy/configs/configs/boot_single.cmd**
+    * 对于主流内核，boot.scr 配置位于： **loftq-build/bsp/configs/boot_single.cmd**
 
 
 boot.cmd 规则说明
@@ -181,7 +182,8 @@ boot.cmd 是用于生 boot.scr，即 uboot 可执行文件的源文件，我们�
    init=/sbin/init
    loglevel=8
 
-   setenv bootargs noinitrd console=${console} console=tty0 init=${init} loglevel=${loglevel} vmalloc=${vmalloc} partitions=${partitions} root=${mmc_root} rootwait rw rootfstype=ext4 panic=10 consoleblank=0 ${extra}
+   setenv bootargs noinitrd console=${console} init=${init} loglevel=${loglevel} vmalloc=${vmalloc} \
+         partitions=${partitions} root=${mmc_root} ${extra}
 
    ext4load mmc 0 0x46000000 boot/mainline/zImage
    ext4load mmc 0 0x48000000 boot/mainline/sun6i-a31-mixtile-loftq.dtb
@@ -190,15 +192,15 @@ boot.cmd 是用于生 boot.scr，即 uboot 可执行文件的源文件，我们�
 
 其中关键的内容如下：
 
-* **bootdelay=3**，指定 uboot 在启动后，在正式加载内核启动前，有3秒中的倒计时，用于用户可能选择的操作，比如进入 uboot，类似于 PC 启动时进入 BIOS 时的选择。
+* **bootdelay=3** ，指定 uboot 在启动后，在正式加载内核启动前，有3秒中的倒计时，用于用户可能选择的操作，比如进入 uboot，类似于 PC 启动时进入 BIOS 时的选择。
 * **console=ttyS0,115200**，指定开机后控制台登入端口和参数，这里指定开机后将 **ttyS0** 指定为控制台入口，并且其符号率设置为 **115200** 。
-* **mmc_root**，指定系统引导的 rootfs 所在的分区。
-* **init=/sbin/init**，指定系统初始化文件。
-* **loglevel=8**，指定系统日志等级。
-* **setenv bootargs ...**，这部分用于正式的将我们前几项设为 uboot 的环境变量。
-* **ext4load mmc 0 0x46000000 boot/mainline/zImage**，加载内核到指定的内存地址，为了统一放置主流内核固件文件，我们将内核放置在根分区的 **/boot/mainline/** 目录下，用户可以自行修改，通常放置在 `/boot`。
-* **ext4load mmc 0 0x48000000 boot/mainline/sun6i-a31-mixtile-loftq.dtb**，加载 dts 文件到指定的内存地址，dts 二进制文件的位置与 **zImage** 相同，尽量放在相同的位置。
-* **bootz 0x46000000 - 0x48000000**，系统引导指令，从指定位置运行内核，并传递 dts 配置文件地址到内核。
+* **mmc_root** ，指定系统引导的 rootfs 所在的分区。
+* **init=/sbin/init** ，指定系统初始化文件。
+* **loglevel=8** ，指定系统日志等级。
+* **setenv bootargs ...** ，这部分用于正式的将我们前几项设为 uboot 的环境变量。
+* **ext4load mmc 0 0x46000000 boot/mainline/zImage** ，加载内核到指定的内存地址，为了统一放置主流内核固件文件，我们将内核放置在根分区的 **/boot/mainline/** 目录下，用户可以自行修改，通常放置在 */boot*。
+* **ext4load mmc 0 0x48000000 boot/mainline/sun6i-a31-mixtile-loftq.dtb** ，加载 dts 文件到指定的内存地址，dts 二进制文件的位置与 **zImage** 相同，尽量放在相同的位置。
+* **bootz 0x46000000 - 0x48000000** ，系统引导指令，从指定位置运行内核，并传递 dts 配置文件地址到内核。
 
 对于旧版的内核，我们的配置文件会有所不同，主要不同部分内容如下：
 
@@ -299,6 +301,10 @@ SD 卡写入 U-Boot
    sudo mount -t ext4 /dev/mmcblk0p1 /mnt
    
    sudo cp -r /chroot/sid-armhf/* /mnt
+
+.. note::
+
+  **/chroot/sid-armhf** 是指我们在 `获取 Debian rootfs`_ 中所指定的 rootfs 路径。
 
 拷贝 BSP 文件到 ext4 分区
 '''''''''''''''''''''''''''''''

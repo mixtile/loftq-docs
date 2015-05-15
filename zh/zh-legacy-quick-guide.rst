@@ -2,13 +2,17 @@
   .. image:: ../_static/pictures/mixtile-logo.png
     :align: left
 
-=====================
+=============================
 LOFT-Q 旧版系统快速指南
-=====================
+=============================
 :组织: Mixtile Team 
 :编写: Phil.Han <phil.han@focalcrest.com>
 :版本: 0.2
 :日期: 2015.04.23
+
+.. note:: 
+
+   旧版内核是由全志定制的下游内核，其版本比较老，建议仅用于 Android 和 Buildroot 系统，因为它缺少新的 GNU/Linux 系统所需要的一些特性和功能。
 
 LOFT-Q 是 Mixtile 项目的第二代原型板，基于全志 A31 芯片，主要面向嵌入式开发人员，工程师，创客，以及极客，可以作为家庭影音中心，个人云存储设备，NAS，等。该指南主要用于向开发人员介绍如何快速的根据自己的需要搭建合适的开发环境，并基于 LOFT-Q 定制自己的应用。
 
@@ -29,12 +33,13 @@ LOFT-Q 是 Mixtile 项目的第二代原型板，基于全志 A31 芯片，主�
 * 构建工具： https://github.com/mixtile/loftq-build
 * 旧版内核： https://github.com/mixtile/loftq-linux
 * 旧版uboot: https://github.com/mixtile/loftq-uboot
-* android: https://bitbucket.org/Mixtile/loftq-android
+* android: http://www.mixtile.com/downloads/loft-q/ （建议使用 loftq_android_20150407.tar.bz2）
 * buildroot: https://github.com/mixtile/buildroot
 
 对于上述的代码和工具，我们需要按如下的目录结构进行组织
 
 .. code-block:: sh
+
   android
   loftq-build
   loftq-linux
@@ -42,15 +47,15 @@ LOFT-Q 是 Mixtile 项目的第二代原型板，基于全志 A31 芯片，主�
 
 那么我们可以参照如下命令来搭建基本的构建环境：
 
-  .. code-block:: sh
+.. code-block:: sh
 
-    mkdir loftq
-    cd loftq
+  mkdir loftq
+  cd loftq
 
-    git clone https://github.com/mixtile/loftq-build.git
-    git clone https://github.com/mixtile/loftq-uboot.git
-    git clone https://github.com/mixtile/loftq-linux.git
-    git clone https://github.com/mixtile/buildroot.git
+  git clone https://github.com/mixtile/loftq-build.git
+  git clone https://github.com/mixtile/loftq-uboot.git
+  git clone https://github.com/mixtile/loftq-linux.git
+  git clone https://github.com/mixtile/buildroot.git
 
 关于 loftq-build
 ''''''''''''''''''
@@ -70,8 +75,8 @@ loftq-build 主要用于旧版系统的构建和打包使用，包含用于完�
 
   linux_build_uboot
 
-更多说明
-''''''''''''''''''
+关于 sunxi_env.sh
+''''''''''''''''''''''''''
 
 sunxi_env.sh 类似于 android 的 lunch 配置文件。用于向当前终端中导入可用环境变量以及一些指令。
 
@@ -157,7 +162,7 @@ sunxi_env.sh 的开头部分定义了 uboot, linux, 以及 buildroot, android �
 .. code-block:: sh
 
   make distclean
-  make sun6i_config
+  make sun6i_defconfig
   make -j4
 
 旧版 Linux 内核构建
