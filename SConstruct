@@ -27,6 +27,7 @@ zh_docs = [
 'zh/zh-mainline-quick-guide.rst',
 'zh/zh-owncloud-howto.rst',
 'zh/zh-seafile-howto.rst',
+'zh/zh-gpio-guide.rst',
 ]
 
 #env.Rst2Html(en_docs, stylesheet=html_stylesheet)
